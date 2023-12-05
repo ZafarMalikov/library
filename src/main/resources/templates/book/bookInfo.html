@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Info</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/uikit.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/29/29302.png" type="image/png">
+
+
+    <style>
+
+        .buy-button {
+            background-color: #4CAF50; /* Зеленый цвет фона */
+            color: white; /* Белый цвет текста */
+            padding: 10px 20px; /* Внутренний отступ кнопки */
+            border: none; /* Убрать границу */
+            border-radius: 5px; /* Скругленные углы */
+            cursor: pointer; /* Изменение курсора при наведении */
+            font-size: 16px; /* Размер шрифта */
+        }
+
+        .buy-button:hover {
+            background-color: #45a049; /* Зеленый цвет фона при наведении */
+        }
+
+
+        #hiddenButton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            z-index: -1;
+        }
+
+
+        .custom-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+
+        body.dark-theme {
+            --first-color: hsl(31, 76%, 74%);
+            --button-color: hsl(0, 0%, 24%);
+            --button-color-alt: hsl(0, 0%, 28%);
+            --title-color: hsl(0, 0%, 95%);
+            --text-color: hsl(0, 0%, 75%);
+            --body-color: hsl(0, 0%, 12%);
+            --container-color: hsl(0, 0%, 16%);
+            --border-color: hsl(0, 0%, 20%);
+        }
+
+        /*========== Button Dark/Light ==========*/
+        .change-theme {
+            color: var(--title-color);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+
+        .dark-theme .change-theme,
+        .dark-theme .nav__toggle,
+        .dark-theme .nav__shop,
+        .dark-theme .button--gray {
+        }
+
+        .dark-theme .scroll-header {
+            box-shadow: 0 1px 4px hsla(0, 0%, 4%, .3);
+        }
+
+        .scroll-header .change-theme,
+        .scroll-header .nav__toggle,
+        .scroll-header .nav__shop {
+            color: var(--title-color);
+        }
+
+        .dark-theme::-webkit-scrollbar {
+            background: hsl(0, 0%, 30%);
+        }
+
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .image {
+            flex: 1;
+            text-align: left;
+        }
+
+        .text {
+            flex: 1;
+            text-align: left;
+            margin: 180px;
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .text p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="image">
+
+        <img th:src="${bookById.get().getPhotoPath()}">
+
+    </div>
+
+
+    <div class="text">
+
+        <h1 th:text="${bookById.get().name}"></h1>
+
+        <a style=" text-decoration: none;color: inherit;"
+           th:text=" 'Муаллиф : ' + ${bookById.get().author}"></a>
+        <br>
+        <a style=" text-decoration: none;color: inherit;"
+           th:text=" 'Нашриёт : ' + ${bookById.get().publisher}"></a>
+        <br>
+        <a style=" text-decoration: none;color: inherit;"
+           th:text=" 'Ҳажми : ' +${bookById.get().size}"></a>
+        <br>
+        <a style=" text-decoration: none;color: inherit;"
+           th:text=" 'Сана : ' + ${bookById.get().date}"></a>
+        <br>
+        <a style=" text-decoration: none;color: inherit;"
+           th:text=" 'Нархи : ' + ${bookById.get().price}"></a>
+        <br>
+        <br>
+
+        <form th:action="@{/books/addToCart/{bookId}(bookId=${bookById.get().id})}" th:method="POST">
+            <button class="buy-button">Саватчага қўшиш</button>
+        </form>
+
+
+    </div>
+</div>
+
+</body>
+
+
+</html>

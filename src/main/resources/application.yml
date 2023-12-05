@@ -1,0 +1,23 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:8080/postgres
+    password: postgres
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  mvc:
+    formcontent:
+      filter:
+        enabled: true
+    hidden-method:
+      filter:
+        enabled: true
+
+
+
+
