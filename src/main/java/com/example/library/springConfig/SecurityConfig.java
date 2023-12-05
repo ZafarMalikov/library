@@ -50,12 +50,7 @@ public class SecurityConfig {
                 .build();
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) throws Exception {
-//        auth
-//                .userDetailsService(userDetailsService)
-//                .passwordEncoder(passwordEncoder);
-//    }
+
 
 
 
